@@ -4,29 +4,42 @@ import {
   getPostByIdService,
   updatePostByIdService,
   deletePostByIdService,
+  likePostService,
+  dislikePostService,
 } from "./../services/posts.service.js";
 
 export const getPosts = async (req, res) => {
-  getPostsService();
-  return res.send("Returned all Posts");
+  const posts = await getPostsService();
+  return res.status(200).json({ posts });
 };
 
 export const newPost = async (req, res) => {
-  newPostService();
-  return res.send("Added new Post");
+  const post = await newPostService();
+  return res.status(200).json({ post });
 };
 
 export const getPostById = async (req, res) => {
   getPostByIdService();
-  return res.send("Returned Post");
+  return res.status(200).json({ message: "Returned Post" });
 };
 
 export const updatePostById = async (req, res) => {
   updatePostByIdService();
-  return res.send("Updated Post");
+  return res.status(200).json({ message: "Updated Post" });
 };
 
 export const deletePostById = async (req, res) => {
-  deletePostByIdService();
-  return res.send("Deleted Post");
+  const { postId } = req.params;
+  await deletePostByIdService(postId);
+  return res.status(204).json({});
+};
+
+export const likePost = async (req, res) => {
+  likePostService();
+  return res.status(200).json({ message: "Liked Post" });
+};
+
+export const dislikePost = async (req, res) => {
+  dislikePostService();
+  return res.status(200).json({ message: "Disliked Post" });
 };
