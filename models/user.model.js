@@ -13,22 +13,27 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
-    password: {
+    bio: {
       type: String,
-      required: true,
+      default: "I am using Vibesnap!",
     },
     posts: [
       {
         type: Schema.Types.ObjectId,
         ref: "Post",
+        default: [],
       },
     ],
-    likedPosts: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Post",
-      },
-    ],
+    pfp: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    bgImg: {
+      type: String,
+      trim: true,
+      default: "",
+    },
   },
   { timestamps: true }
 );

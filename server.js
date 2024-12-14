@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import app from "./app.js";
-import "dotenv/config";
+import { config } from "dotenv";
+
+config(); // Load environment variables from .env
 
 // Shutting down in case of unhandled exceptions
 process.on("uncaughtException", (err) => {

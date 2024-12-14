@@ -2,7 +2,7 @@ import { model, Schema } from "mongoose";
 
 const postSchema = new Schema(
   {
-    url: {
+    urls: {
       type: [String],
       validate: {
         validator: function (el) {
@@ -13,7 +13,7 @@ const postSchema = new Schema(
         message: "Tags must be an array of strings.",
       },
     },
-    description: {
+    caption: {
       type: String,
     },
     createdBy: {
@@ -25,6 +25,7 @@ const postSchema = new Schema(
       {
         type: Schema.Types.ObjectId,
         ref: "User",
+        default: [],
       },
     ],
   },

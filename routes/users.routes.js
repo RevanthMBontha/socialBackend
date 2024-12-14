@@ -7,10 +7,11 @@ import {
   getUserById,
   updateUserById,
 } from "../controllers/users.controller.js";
+import { upload } from "../aws.js";
 
 const router = Router();
 
-router.route("/").get(getUsers).post(createNewUser);
+router.route("/").get(getUsers).post(upload.array("files", 1), createNewUser);
 
 router
   .route("/:userId")

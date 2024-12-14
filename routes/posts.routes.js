@@ -6,10 +6,11 @@ import {
   updatePostById,
   deletePostById,
 } from "../controllers/posts.controller.js";
+import { upload } from "../aws.js";
 
 const router = Router();
 
-router.route("/").get(getPosts).post(newPost);
+router.route("/").get(getPosts).post(upload.array("files", 10), newPost);
 
 router
   .route("/:postId")
